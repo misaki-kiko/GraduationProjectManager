@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>毕业设计管理系统 | 学生主页</title>
+
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="pace-done skin-1">
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle"
+                             src="
+
+
+
+
+
+
+
+
+                                     {% if userInfoDict[12] != '' %}{{ url_for('static',filename=userInfoDict[12]) }}{% else %}{{ url_for('static',filename='img/photo.jpg') }}{% endif %}"
+                             width="60px"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">{{ userInfoDict[11] }}</span>
+                            <span class="text-muted text-xs block" style="color: white !important">{{ userInfoDict[8] }} 学生 <b
+                                    class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">登出</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link active">
+                    <a href="/student" style="background-color:#0e9aef;"><i class="fa fa-star"></i> <span
+                            class="nav-label">学生首页</span></a>
+                </li>
+                <li>
+                    <a href="/student/profile"><i class="fa fa-user-o"></i> <span class="nav-label">个人信息</span></a>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-flask"></i> <span class="nav-label">选题管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/student/topic/choose">选择题目</a></li>
+                        <li><a href="/student/topic/query">查看选题情况</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-file-text"></i> <span class="nav-label">文档管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/student/docs/open">开题报告管理</a></li>
+                        <li><a href="/student/docs/middle">中期报告管理</a></li>
+                        <li><a href="/student/docs/thesis">毕业论文管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/student/defend/query"><i class="fa fa-comments"></i> <span class="nav-label">查看答辩信息</span></a>
+                </li>
+                <li>
+                    <a href="/student/score"><i class="fa fa-table"></i><span class="nav-label">成绩查询</span></a>
+                </li>
+                <li>
+                    <a href="/student/notice"><i class="fa fa-info-circle"></i><span class="nav-label">查看通知</span></a>
+                </li>
+                <li>
+                    <a href="/student/notice/chat"><i class="fa fa-info-circle"></i><span class="nav-label">用户交流</span></a>
+                </li>
+<li class="landing_link active">
+                <a href="/faq" style="background-color:#0e9aef;"><i class="fa fa-star"></i> <span
+                        class="nav-label" style="color: whitesmoke">帮助中心</span></a>
+            </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="logout">
+                            <i class="fa fa-sign-out"></i> 注销
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+
+        <div class="container" style="padding-bottom: 5vh;padding-top: 10px;">
+            <div class="row" style="padding-bottom: 5vh;">
+                <div class="ibox-content text-center p-md col-md-12">
+                    <h2><b>毕业设计管理系统 学生端</b></h2>
+                    <p>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>文档下载</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="table table-hover">
+                                <thead>
+                                <th>文档名称</th>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="/download/common/20190426155056.doc">本科学生毕业论文、毕业设计模板</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/download/common/20181130154440.doc">本科学生毕业论文、毕业设计模版使用说明</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/download/common/20201221094232.doc">开题报告模版</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/download/common/20181130154513.docx">中期报告模版</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/download/common/20181206223857.docx">毕业设计（论文）撰写规范</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/download/common/20181130154331.pdf">参考论文</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <span class="label label-warning float-right">有新公告</span>
+                            <h5>公告</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>通知标题</th>
+                                    <th>时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in notice %}
+                                    {% if i[6] == 0 or i[6] == 2 %}
+                                        <tr>
+                                            <td>{{ i[0] }}</td>
+                                            <td><a href="/notice/article?id={{ i[0] }}">{{ i[1] }}</a>
+                                            </td>
+                                            <td>{{ i[5] }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>通知消息</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="tabs-container">
+                                <div class="tab-content">
+                                    <div role="tabpanel" id="tab-1" class="tab-pane active show">
+                                        <div class="panel-body">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>标题</th>
+                                                    <th>是否回复</th>
+                                                    <th>时间</th>
+                                                </tr>
+                                                <tbody>
+                                                {% if myReceiveAdvice != False %}
+                                                    {% for i in myReceiveAdvice %}
+                                                        <tr>
+                                                            <td>{{ i[0] }}</td>
+                                                            <td>
+                                                                <a href="/notice/advice/article?aid={{ i[0] }}">{{ i[4][:20] }}</a>
+                                                            </td>
+                                                            <td>{% if i[8] != None %}
+                                                                <span class="badge-info">已回复</span>
+                                                            {% else %}
+                                                                <span class="badge-success">未回复</span>
+                                                            {% endif %}</td>
+                                                            <td>{{ i[7] }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>目前阶段</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">{{ thisStage[0] }}</h1>
+                            <div class="stat-percent font-bold text-success"></div>
+                            <small>{{ thisStage[1] }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="float-right">
+                <strong>1.0.0 GraduationProjectManager</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> 毕业设计管理系统 1.0.0 &copy; 2020-2021
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- Flot -->
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+    <!-- Peity -->
+    <script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+
+    <!-- jQuery UI -->
+    <script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+    <!-- GITTER -->
+    <script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+    <!-- Sparkline -->
+    <script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+    <!-- ChartJS-->
+    <script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+
+    <!-- Toastr -->
+    <script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+
+</body>
+</html>

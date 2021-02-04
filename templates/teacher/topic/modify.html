@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="{{ url_for('static',filename='css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
+    <title>毕业设计管理系统 | 修改选题</title>
+    <link href="{{ url_for('static',filename='css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+
+    <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/steps/jquery.steps.min.js') }}"></script>
+
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
+
+</head>
+
+<body class="pace-done skin-3">
+
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle"
+                             src="
+
+
+
+
+                                     {% if userInfoDict[12] != '' %}{{ url_for('static',filename=userInfoDict[12]) }}{% else %}{{ url_for('static',filename='img/photo.jpg') }}{% endif %}"
+                             width="60px"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">{{ userInfoDict[11] }}</span>
+                            <span class="text-muted text-xs block" style="color: white !important">教师 <b
+                                    class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">登出</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link active">
+                    <a href="/teacher" style="background-color:#ea9a41;"><i class="fa fa-star"></i> <span
+                            class="nav-label">教师首页</span></a>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-user-o"></i> <span class="nav-label">用户管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/user/query">指导学生信息</a></li>
+                        <li><a href="/teacher/user/profile">修改个人信息</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="index.html"><i class="fa fa-table"></i> <span class="nav-label">成绩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/score/insert">成绩录入</a></li>
+                        <li><a href="/teacher/score/query">成绩查询</a></li>
+                        <li><a href="/teacher/score/modify">成绩修改</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-info-circle"></i> <span class="nav-label">通知/公告管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/notice/advice/add">新增通知</a></li>
+                        <li><a href="/teacher/notice/advice/list">通知列表</a></li>
+                        <li><a href="/teacher/notice/chat">用户交流</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-flask"></i> <span class="nav-label">选题管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/topic/add">添加选题</a></li>
+                        <li><a href="/teacher/topic/query">查看选题情况</a></li>
+                        <li class="active"><a href="/teacher/topic/modify">修改选题</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-comments"></i> <span class="nav-label">答辩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/defend/start">开始答辩</a></li>
+                        <li><a href="/teacher/defend/query">查看答辩记录</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-file-text"></i> <span class="nav-label">文档管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/docs/open">开题报告管理</a></li>
+                        <li><a href="/teacher/docs/middle">中期报告管理</a></li>
+                        <li><a href="/teacher/docs/thesis">毕业论文管理</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search"
+                                   id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> 注销
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>修改选题信息</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/admin">主页</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>选题管理</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <strong>修改选题信息</strong>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>信息详情</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#" class="dropdown-item">选项 1</a>
+                                </li>
+                                <li><a href="#" class="dropdown-item">选项 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="table-responsive">
+                            <div id="DataTables_Table_0_wrapper"
+                                 class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                <table class="table table-striped table-bordered table-hover dataTables-example dataTable"
+                                       id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">
+                                    <thead>
+                                    <tr>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0"
+                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                            aria-label="姓名: activate to sort column descending" style="width: 85px;">
+                                            选题编号
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                            colspan="1" aria-label="学号: activate to sort column ascending"
+                                            style="width: 165px;">选题名称
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                            colspan="1" aria-label="详细信息: activate to sort column ascending"
+                                            style="width: 59px;">修改
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                            colspan="1" aria-label="详细信息: activate to sort column ascending"
+                                            style="width: 59px;">学生
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                            colspan="1" aria-label="性别: activate to sort column ascending"
+                                            style="width: 147px;">学生学号
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                            colspan="1" aria-label="班级: activate to sort column ascending"
+                                            style="width: 62px;">教师
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="query_tbody">
+                                    {% for i in datas %}
+                                        {% if i[3] == userInfoDict[7] %}
+                                        <tr>
+                                        <td class="sorting_1">{{ i[0] }}</td>
+                                        <td>{{ i[2] }} </td>
+                                        <td>
+                                            <a data-toggle="modal" class="btn btn-primary" href="#modal-form"
+                                               onclick="changeData('{{ i[0] }}')">修改</a>
+                                        </td>
+                                        <td class="center"> {{ i[7] }}</td>
+                                        <td class="center"> {{ i[1] }}</td>
+                                        <td class="center">{{ i[8] }}</td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-form" class="modal fade" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12 b-r">
+                                    <h3 class="m-t-none m-b">修改信息</h3>
+
+                                    <p>删除并重新输入需要被修改的信息，按下保存按钮即可</p>
+
+                                    <form role="form">
+                                        <div class="form-group"><label>ID</label> <input type="text"
+                                                                                         id="id"
+                                                                                         placeholder="ID"
+                                                                                         class="form-control"
+                                                                                         disabled>
+                                        </div>
+                                        <div class="form-group"><label>学生学号</label> <input type="text"
+                                                                                           id="snum"
+                                                                                           placeholder="ID"
+                                                                                           class="form-control"
+                                        >
+                                        </div>
+                                        <div class="form-group"><label>选题名称</label> <input type="text"
+                                                                                           id="title"
+                                                                                           placeholder="UID"
+                                                                                           class="form-control"
+                                        >
+                                        </div>
+                                        <div class="form-group"><label>教师工号</label> <input type="text"
+                                                                                           id="tnum"
+                                                                                           class="form-control" disabled>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-sm btn-primary float-right m-t-n-xs"
+                                                    type="button" onclick="submit_change()"><strong>修改</strong></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="float-right">
+                    <strong>1.0.0 GraduationProjectManager</strong>
+                </div>
+                <div>
+                    <strong>Copyright</strong> 毕业设计管理系统 1.0.0 &copy; 2020-2021
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        $('#').off("click").on("click", function () {
+            $('#dt_sqjl').DataTable().ajax.reload();
+        });
+        $(document).ready(function () {
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: '用户信息导出'},
+                    {extend: 'pdf', title: '用户信息导出'},
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+
+        });
+
+    </script>
+    <script>
+        function UserInfoSearch() {
+            var uii = document.getElementById('uii').value;
+            var uis = document.getElementById('uis').value;
+
+        }
+
+        function changeData(id) {
+            $.get("/api/topic/query?t=t.id&v=" + id, function (datas) {
+                if (datas == false) {
+                    alert('没有查到相关信息');
+                } else {
+                    $('#id').val(datas[0][0]);
+                    $('#snum').val(datas[0][1]);
+                    $('#title').val(datas[0][2]);
+                    $('#tnum').val(datas[0][3]);
+                }
+            });
+        }
+
+        function submit_change() {
+            $.ajax({
+                type: 'POST',
+                url: '/api/topic/modify',
+                data: {
+                    'id': $('#id').val(),
+                    't_snumber': $('#snum').val(),
+                    'title': $('#title').val(),
+                    't_tnumber': $('#tnum').val(),
+                },
+                dataType: 'json'
+            });
+            {#UserInfoSearch();#}
+            alert('选题信息修改成功，请手动刷新查看结果');
+            document.getElementById("modal-form").style.display = 'none';
+            document.getElementsByClassName('modal-backdrop fade show')[0].style.display = 'none';
+        }
+    </script>
+    <script>
+        $('.custom-file-input').on('change', function () {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+        $(document).ready(function () {
+            var data1 = [
+                [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
+            ];
+            var data2 = [
+                [0, 1], [1, 0], [2, 2], [3, 0], [4, 1], [5, 3], [6, 1], [7, 5], [8, 2], [9, 3], [10, 2], [11, 1], [12, 0], [13, 2], [14, 8], [15, 0], [16, 0]
+            ];
+            $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                    data1, data2
+                ],
+                {
+                    series: {
+                        lines: {
+                            show: false,
+                            fill: true
+                        },
+                        splines: {
+                            show: true,
+                            tension: 0.4,
+                            lineWidth: 1,
+                            fill: 0.4
+                        },
+                        points: {
+                            radius: 0,
+                            show: true
+                        },
+                        shadowSize: 2
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true,
+                        tickColor: "#d5d5d5",
+                        borderWidth: 1,
+                        color: '#d5d5d5'
+                    },
+                    colors: ["#1ab394", "#1C84C6"],
+                    xaxis: {},
+                    yaxis: {
+                        ticks: 4
+                    },
+                    tooltip: false
+                }
+            );
+
+            var doughnutData = {
+                labels: ["App", "Software", "Laptop"],
+                datasets: [{
+                    data: [300, 50, 100],
+                    backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+                }]
+            };
+
+
+            var doughnutOptions = {
+                responsive: false,
+                legend: {
+                    display: false
+                }
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+            new Chart(ctx4, {type: 'doughnut', data: doughnutData, options: doughnutOptions});
+
+            var doughnutData = {
+                labels: ["App", "Software", "Laptop"],
+                datasets: [{
+                    data: [70, 27, 85],
+                    backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+                }]
+            };
+
+
+            var doughnutOptions = {
+                responsive: false,
+                legend: {
+                    display: false
+                }
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
+            new Chart(ctx4, {type: 'doughnut', data: doughnutData, options: doughnutOptions});
+
+        });
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-4625583-2', 'webapplayers.com');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- Mainly scripts -->
+    <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- Flot -->
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+    <!-- Peity -->
+    <script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
+
+    <!-- jQuery UI -->
+    <script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+    <!-- GITTER -->
+    <script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+    <script src="{{ url_for('static',filename='js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+
+    <!-- Sparkline -->
+    <script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+    <!-- ChartJS-->
+    <script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+
+    <!-- Toastr -->
+    <script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+    <!--同步官网模板结束-->
+
+</body>
+</html>

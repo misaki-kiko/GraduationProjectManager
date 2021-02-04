@@ -1,0 +1,101 @@
+{% block nav %}
+<nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle"
+                             src="https://kikocore.cn/kiko.png" width="60px"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">Kiko</span>
+                            <span class="text-muted text-xs block">系统管理员 <b class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="dropdown-item" href="profile.html">个人信息</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html">登出</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link">
+                    <a href="/admin"><i class="fa fa-star"></i> <span class="nav-label">管理员首页</span></a>
+                </li>
+                <li class="active">
+                    <a href=""><i class="fa fa-user-o"></i> <span class="nav-label">用户管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level active">
+                        <li class="active"><a href="/admin/add">添加用户</a></li>
+                        <li><a href="/admin/query">查询用户信息</a></li>
+                        <li><a href="/admin/modify">修改用户信息</a></li>
+                        <li><a href="/admin/findpass">密码找回申请</a></li>
+                        <li><a href="/admin/passreset">指定用户密码重置</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="index.html"><i class="fa fa-table"></i> <span class="nav-label">成绩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="">成绩录入</a></li>
+                        <li><a href="">成绩查询</a></li>
+                        <li><a href="">成绩修改</a></li>
+                        <li><a href="">成绩导出（也不一定做）</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-info-circle"></i> <span class="nav-label">通知/公告管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="">新建公告</a></li>
+                        <li><a href="">修改公告</a></li>
+                        <li><a href="">新增通知</a></li>
+                        <li><a href="">修改通知</a></li>
+                        <li><a href="">撤回通知</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-flask"></i> <span class="nav-label">选题管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="">查看选题情况</a></li>
+                        <li><a href="">修改选题</a></li>
+                        <li><a href="">导出选题情况（不一定做不做）</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-comments"></i> <span class="nav-label">答辩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="">新增答辩</a></li>
+                        <li><a href="">查看答辩记录</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-file-text"></i> <span class="nav-label">文档管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="">开题报告管理</a></li>
+                        <li><a href="">中期报告管理</a></li>
+                        <li><a href="">毕业论文管理</a></li>
+                        <li><a href="">文档上传权限管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-gears"></i> <span class="nav-label">系统设置</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="">通用设置</a></li>
+                        <li><a href="">当前阶段设置</a></li>
+
+                        <li><a href=""></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+{% endblock %}

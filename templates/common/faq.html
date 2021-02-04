@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>毕业设计管理系统 ｜ 帮助</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<a href="/" onclick="window.history.go(-1);" style="">返回</a>
+<h1 style="text-align: center;color: #0a6aa1;margin-top: 10px;margin-bottom: 10px;">毕业设计管理系统 ｜ 帮助</h1>
+<div style="width: 80%;display: block;margin: 0 auto;" class="center-block">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        登陆
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>错误代码</th>
+                            <th>错误原因</th>
+                            <th>解决方案</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 10%">1001</td>
+                            <td style="width: 30%">用户名或密码不正确</td>
+                            <td>由于服务器限制，如果输入密码不正确，每分钟只能重试5次，每小时最多10次，每天最多30次。如果不记得密码，请联系教务处
+                                修改密码，或在登陆页面选择忘记密码，提交申请。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">1002</td>
+                            <td style="width: 30%">用户账户被锁定</td>
+                            <td>请联系教务处或指导教师进行账户解锁。</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">1003</td>
+                            <td style="width: 30%">用户类别未选择</td>
+                            <td>请联系教务处选择用户类别。</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">1004</td>
+                            <td style="width: 30%">管理员关闭了登陆功能</td>
+                            <td>可能因为当前不是系统使用期或系统正在维护，请关注学校通知或联系指导教师了解详情。</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">1005</td>
+                            <td style="width: 30%">用户不存在</td>
+                            <td>请联系系统管理部门添加用户，或检查输入是否有误</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        文件上传和下载
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>错误代码</th>
+                            <th>错误原因</th>
+                            <th>解决方案</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 10%">2001</td>
+                            <td style="width: 30%">上传失败，原因是管理员关闭了上传功能</td>
+                            <td>可能由于提交期限已过或是非可上传时间，因此管理员关闭了系统上传文件的功能，如需上传文件，请联系指导教师或教务处</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">2002</td>
+                            <td style="width: 30%">未找到相应论文题目</td>
+                            <td>管理员：请检查 选题管理->查看选题情况 和 文档管理 ->对应阶段报告管理 中对应数据是否完整，如不完整请添加信息。
+                                <br>教师：请联系管理员进行检查，同时需要注意的是：非本人指导学生文档是无法上传的。
+                                <br>学生：请通过 通知/公告管理 ->用户交流 功能向 异常报告（工号：10099）或所属导师进行问题报告，发信时，请注明问题发生的具体时间。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">2003</td>
+                            <td style="width: 30%">类型参数错误</td>
+                            <td>请检查传入类型的参数</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">2004</td>
+                            <td style="width: 30%">文件上传失败</td>
+                            <td>请检查传入文件类型，文件大小是否符合要求。</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">3099</td>
+                            <td style="width: 30%">文件下载失败</td>
+                            <td>管理员关闭了文件下载功能。</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        信息录入
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                    wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                    eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                    assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                    farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                    labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        短信服务
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>错误代码</th>
+                            <th>错误原因</th>
+                            <th>解决方案</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 10%">4000</td>
+                            <td style="width: 30%">点击了接收验证码却长时间没有收到验证码</td>
+                            <td>可能由于下列问题 4001、4002、4003 造成</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">4001</td>
+                            <td style="width: 30%">管理员关闭了短信发送功能</td>
+                            <td>请联系系统管理员或通过 通知/公告管理 ->用户交流 功能向 异常报告（工号：10099）进行问题报告。</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">4002</td>
+                            <td style="width: 30%">请求次数过多</td>
+                            <td>用户60秒内请求超过一次验证码。</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 10%">4003</td>
+                            <td style="width: 30%">短信平台异常</td>
+                            <td>请联系系统管理员或通过 通知/公告管理 ->用户交流 功能向 异常报告（工号：10099）进行问题报告。</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

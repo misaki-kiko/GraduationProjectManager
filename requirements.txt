@@ -1,0 +1,15 @@
+aliyun-python-sdk-core-v3==2.13.11
+click==7.1.2
+Flask==1.1.2
+Flask-Limiter==1.4
+itsdangerous==1.1.0
+Jinja2==2.11.2
+jmespath==0.10.0
+limits==1.5.1
+MarkupSafe==1.1.1
+pycryptodome==3.9.9
+PyJWT==1.7.1
+PyMySQL==0.10.1
+six==1.15.0
+Werkzeug==1.0.1
+xlrd==1.2.0

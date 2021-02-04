@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>毕业设计管理系统 | 帮助中心</title>
+
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="pace-done skin-2">
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <h1 style="color: white;font-weight: bolder;">帮助中心</h1>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link active">
+                    <a href="/faq" style="background-color:#0e9aef;"><i class="fa fa-star"></i> <span
+                            class="nav-label" style="color: whitesmoke">帮助中心首页</span></a>
+                </li>
+
+                <li>
+                    <a href="/faq/login"><i class="fa fa-star"></i> <span class="nav-label">用户登录</span></a>
+                </li>
+                <li>
+                    <a href="/faq/file"><i class="fa fa-star"></i> <span class="nav-label">文件相关</span></a>
+                </li>
+                <li>
+                    <a href="/faq/message"><i class="fa fa-star"></i> <span class="nav-label">邮件/短信服务</span></a>
+                </li>
+                <li class="active">
+                    <a href="/faq/info"><i class="fa fa-star"></i> <span class="nav-label">信息操作</span></a>
+                </li>
+                <li>
+                    <a href="/faq/notice"><i class="fa fa-star"></i> <span class="nav-label">公告/通知相关</span></a>
+                </li>
+                <li>
+                    <a href="/faq/student"><i class="fa fa-star"></i> <span class="nav-label">学生操作手册</span></a>
+                </li>
+                <li>
+                    <a href="/faq/teacher"><i class="fa fa-star"></i> <span class="nav-label">教师操作手册</span></a>
+                </li>
+                <li>
+                    <a href="/faq/admin"><i class="fa fa-star"></i> <span class="nav-label">管理员操作手册</span></a>
+                </li>
+                <li>
+                    <a href="/versions"><i class="fa fa-star"></i> <span class="nav-label">关于系统</span></a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                </div>
+
+            </nav>
+        </div>
+
+        <div class="container" style="padding-bottom: 5vh;padding-top: 10px;">
+            <div class="row" style="padding-bottom: 5vh;">
+                <div class="ibox-content text-center p-md col-md-12">
+                    <h2><b>毕业设计管理系统 帮助系统 -- 信息操作</b></h2>
+                    <p>请根据页面提示的错误代码或问题描述查找问题，点击绿色链接即可查看解决方案。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="row">
+                    <div class="col-md-7">
+                        <a data-toggle="collapse" href="#faq1" class="faq-question">添加用户失败</a>
+                        <small>错误代码： <strong>5001</strong></small>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="faq1" class="panel-collapse collapse ">
+                            <div class="faq-answer">
+                                <p>添加用户失败一般会收到更详细的错误提示，比如：电话号码重复，qq号码重复等。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="float-right">
+                <strong>1.0.0 GraduationProjectManager</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> 毕业设计管理系统 1.0.0 &copy; 2020-2021
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- Flot -->
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+    <!-- Peity -->
+    <script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+
+    <!-- jQuery UI -->
+    <script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+    <!-- GITTER -->
+    <script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+    <!-- Sparkline -->
+    <script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+    <!-- ChartJS-->
+    <script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+
+    <!-- Toastr -->
+    <script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+
+</body>
+</html>

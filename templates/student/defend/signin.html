@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学生签到</title>
+    <link href="{{ url_for('static',filename='css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/plugins/select2/select2.min.css') }}" rel="stylesheet">
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='js/qrcode.js') }}"></script>
+</head>
+<body>
+<div class="alert-info alert">
+    <h3>请先核对下方个人信息、论文信息是否正确，<b>并仔细阅读学校、院系通知</b>，在本页面输入教师端签到码进行签到</h3>
+    <h3 style="color: red">请注意：签到码每分钟更新，过期的签到码将不能使用。</h3>
+</div>
+<h1 style="text-align: center">个人信息</h1>
+<table class="table" style="text-align: center">
+    <tr>
+        <td style="font-weight: bolder">姓名</td>
+        <td>{{ userInfoDict[11] }}</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bolder">学号</td>
+        <td>{{ userInfoDict[7] }}</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bolder">学院-方向</td>
+        <td>{{ userInfoDict[8] }} - {{ userInfoDict[9] }}</td>
+    </tr>
+</table>
+<div class="hr-line-dashed"></div>
+<h1 style="text-align: center">论文信息</h1>
+<table class="table" style="text-align: center">
+    <tr>
+        <td style="font-weight: bolder">论文题目</td>
+        <td>{{ paper[0][2] }}</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bolder">指导教师</td>
+        <td>{{ teacher_info[11] }}({{ paper[0][3] }})</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bolder">开题-中期-终稿分数</td>
+        <td>{{ paper[0][15] }} - {{ paper[0][16] }} - {{ paper[0][17] }}</td>
+    </tr>
+</table>
+<div class="hr-line-dashed"></div>
+<div class="col-lg-12">
+    <div class="ibox ">
+        <div class="ibox-title">
+            <h5>学校公告 <small class="m-l-sm"></small></h5>
+        </div>
+        <div class="ibox-content">
+            <h1>暂无公告</h1>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="ibox ">
+        <div class="ibox-title">
+            <h5>学院公告 <small class="m-l-sm"></small></h5>
+        </div>
+        <div class="ibox-content">
+            <h1>暂无公告</h1>
+        </div>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+
+<div class="col-lg-12">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>签到 <small class="m-l-sm"></small></h5>
+        </div>
+        <div class="ibox-content">
+            <div class="alert alert-info" style="color: red">
+                请仔细阅读并确认上述信息准确无误，确认后，在本页面输入教师端签到码进行签到。
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" maxlength="6" id="signinCode">
+                <span class="input-group-append">
+                <button type="button" class="btn btn-primary" id="signinBtn">签到</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="width: 100px;height: 100px">
+    <p></p>
+</div>
+
+<!-- Mainly scripts -->
+<script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+
+<!-- Flot -->
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+<!-- Peity -->
+<script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/steps/jquery.steps.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<!-- GITTER -->
+<script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+<script src="{{ url_for('static',filename='js/plugins/dataTables/datatables.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+
+<!-- Sparkline -->
+<script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+<!-- ChartJS-->
+<script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+
+<!--同步官网模板结束-->
+
+<script src="{{ url_for('static',filename='js/plugins/select2/select2.full.min.js') }}"></script>
+
+<script>
+
+    $("#signinBtn").click(function () {
+
+        $.get("/defend/signin/response?code=" + $('#signinCode').val(), function (datas) {
+            alert(datas['msg']);
+        });
+    });
+</script>
+
+</body>
+</html>

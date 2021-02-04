@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>毕业设计管理系统 | 用户信息批量导入 ｜ 添加用户</title>
+
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/plugins/dropzone/dropzone.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='js/plugins/dropzone/dropzone.js') }}"></script>
+</head>
+
+<body>
+<div id="wrapper">
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle"
+                             src="{% if userInfoDict[12] != '' %}{{ url_for('static',filename=userInfoDict[12]) }}{% else %}{{ url_for('static',filename='img/photo.jpg') }}{% endif %}" width="60px"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">{{ userInfoDict[11] }}</span>
+                            <span class="text-muted text-xs block">系统管理员 <b class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="dropdown-item" href="/admin/profile">个人信息</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">登出</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link">
+                    <a href="/admin"><i class="fa fa-star"></i> <span class="nav-label">管理员首页</span></a>
+                </li>
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-user-o"></i> <span class="nav-label">用户管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/admin/user/add">添加用户</a></li>
+                        <li><a href="/admin/user/query">查询用户信息</a></li>
+                        <li><a href="/admin/user/modify">修改用户信息</a></li>
+                        <li><a href="/admin/user/findpass">密码找回申请</a></li>
+                        <li><a href="/admin/user/passreset">指定用户密码重置</a></li>
+                        <li class="active"><a href="/admin/user/input">用户信息批量导入</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="index.html"><i class="fa fa-table"></i> <span class="nav-label">成绩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/admin/score/insert">成绩录入</a></li>
+                        <li><a href="/admin/score/query">成绩查询</a></li>
+                        <li><a href="/admin/score/modify">成绩修改</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-info-circle"></i> <span class="nav-label">通知/公告管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/admin/notice/add">新建公告</a></li>
+                        <li><a href="/admin/notice/list">公告列表</a></li>
+                        <li><a href="/admin/notice/advice/add">新增通知</a></li>
+                        <li><a href="/admin/notice/advice/list">通知列表</a></li>
+                        <li><a href="/admin/notice/chat">用户交流</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-flask"></i> <span class="nav-label">选题管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/admin/topic/add">添加选题</a></li>
+                        <li><a href="/admin/topic/query">查看选题情况</a></li>
+                        <li><a href="/admin/topic/modify">修改选题</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-comments"></i> <span class="nav-label">答辩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/admin/defend/add">新增答辩</a></li>
+                        <li><a href="/admin/defend/query">查看答辩记录</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-file-text"></i> <span class="nav-label">文档管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/admin/docs/open">开题报告管理</a></li>
+                        <li><a href="/admin/docs/middle">中期报告管理</a></li>
+                        <li><a href="/admin/docs/thesis">毕业论文管理</a></li>
+                        <li><a href="/admin/docs/manage">文档上传权限管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-gears"></i> <span class="nav-label">系统设置</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/admin/settings/common">通用设置</a></li>
+                        <li><a href="/admin/settings/stage">当前阶段设置</a></li>
+                        <li><a href="/admin/settings/message">短信设置</a></li>
+                        <li><a href="/admin/settings/mail">邮件设置</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search"
+                                   id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> 注销
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>添加用户 - 用户信息批量导入</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/admin">主页</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>用户管理</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <strong>用户信息批量导入</strong>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+        <div class="wrapper wrapper-content">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5></h5>
+                            </div>
+                            {% if verifyCode == True %}
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="alert alert-info">
+                                                本页面上传文件类型限定：xls, xlsx. 文件名不要包含中文。
+                                                <br>上传文件内容排序限定：姓名，班级，学号，电话，qq，email，性别，身份证号，专业，方向
+                                                <br>默认密码：身份证号后六位
+                                            </div>
+                                            <form action="" method="post">
+                                                <div class="custom-file">
+                                                    <input id="file" type="file" class="custom-file-input">
+                                                    <label for="logo" class="custom-file-label">选择文件...</label>
+
+                                                </div>
+                                                <button id="sub_btn" class="btn btn-sm btn-primary float-right m-t-n-xs"
+                                                        type="button" style="display:block;margin-top: 10px">
+                                                    <strong>上传</strong></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div id="faq1" class="panel-collapse collapse show" style="">
+                                                <div class="faq-answer">
+                                                    <p id="ui_uploaded">
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="alert alert-danger">
+                                                本操作需要<b>管理员用户</b>身份验证，请验证手机验证码。
+                                            </div>
+                                            <form action="">
+                                                <div class="input-group"><input type="text" class="form-control"
+                                                                                value="{{ userinfo[16] }}" readonly> <span
+                                                        class="input-group-append">
+                                                    <button type="button"
+                                                            class="btn btn-primary"
+                                                            id="vc_get_btn">接收短信验证码</button> </span></div>
+                                                <div class="input-group" style="margin-top: 1em;"><input type="text"
+                                                                                                         class="form-control" id="code">
+                                                    <span
+                                                            class="input-group-append">
+                                                    <button type="button" class="btn btn-primary" id="vc_verify_btn">验证
+                                        </button> </span></div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="float-right">
+                <strong>1.0.0 GraduationProjectManager</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> 毕业设计管理系统 1.0.0 &copy; 2020-2021
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Mainly scripts -->
+<script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+<script>
+
+    $('#vc_verify_btn').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: '/api/user/messager/verify',
+                data: {
+                    uid:'1609362391',
+                    code:$('#code').val()
+                },success: function (result) {
+                    window.location.href = '/admin/user/input%3Fcode%3D' + $('#code').val()
+            },
+                dataType: 'json'
+            });
+        }
+    );
+    $('#vc_get_btn').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: '/api/user/messager/adminVerify',
+                data: {
+                    id:1,
+                },
+                dataType: 'json'
+            });
+        }
+    );
+{% if verifyCode == True %}
+    $('.custom-file-input').on('change', function () {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+
+    $('#sub_btn').on('click', function () {
+        var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
+
+        var formFile = new FormData();
+        formFile.append("action", "UploadVMKImagePath");
+        formFile.append("file", fileObj); //加入文件对象
+
+        var data = formFile;
+        $.ajax({
+            url: "/upload_user_info",
+            data: data,
+            type: "Post",
+            dataType: "json",
+            cache: false,//上传文件无需缓存
+            processData: false,//用于对data参数进行序列化处理 这里必须false
+            contentType: false, //必须
+            success: function (result) {
+                let btn = '<button>确认解析</button>';
+                $('#ui_uploaded').html(btn + result);
+
+            },
+        })
+    });
+    $('#ui_uploaded').on('click', function () {
+        $.ajax({
+                type: 'POST',
+                url: '/api/user/upload/inputxls',
+                data: {
+                    path:$('#file')[0].files[0].name,
+                },
+                dataType: 'json'
+            });
+    });
+    {% endif %}
+</script>
+
+<!-- Flot -->
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+<!-- Peity -->
+<script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/steps/jquery.steps.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<!-- GITTER -->
+<script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+<!-- Sparkline -->
+<script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+<!-- ChartJS-->
+<script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+
+<!-- Toastr -->
+<script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+
+<!--同步官网模板结束-->
+</body>
+</html>

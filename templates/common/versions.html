@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>毕业设计管理系统 | 关于系统</title>
+
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="pace-done skin-2">
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <h1 style="color: white;font-weight: bolder;">关于系统</h1>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link active">
+                    <a href="/faq" style="background-color:#0e9aef;"><i class="fa fa-star"></i> <span
+                            class="nav-label" style="color: whitesmoke">帮助中心首页</span></a>
+                </li>
+
+                <li>
+                    <a href="/faq/login"><i class="fa fa-star"></i> <span class="nav-label">用户登录</span></a>
+                </li>
+                <li>
+                    <a href="/faq/file"><i class="fa fa-star"></i> <span class="nav-label">文件相关</span></a>
+                </li>
+                <li>
+                    <a href="/faq/message"><i class="fa fa-star"></i> <span class="nav-label">邮件/短信服务</span></a>
+                </li>
+                <li>
+                    <a href="/faq/info"><i class="fa fa-star"></i> <span class="nav-label">信息操作</span></a>
+                </li>
+                <li>
+                    <a href="/faq/notice"><i class="fa fa-star"></i> <span class="nav-label">公告/通知相关</span></a>
+                </li>
+                <li>
+                    <a href="/faq/student"><i class="fa fa-star"></i> <span class="nav-label">学生操作手册</span></a>
+                </li>
+                <li>
+                    <a href="/faq/teacher"><i class="fa fa-star"></i> <span class="nav-label">教师操作手册</span></a>
+                </li>
+                <li>
+                    <a href="/faq/admin"><i class="fa fa-star"></i> <span class="nav-label">管理员操作手册</span></a>
+                </li>
+                <li class="active">
+                    <a href="/versions"><i class="fa fa-star"></i> <span class="nav-label">关于系统</span></a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                </div>
+
+            </nav>
+        </div>
+
+        <div class="container" style="padding-bottom: 5vh;padding-top: 10px;">
+            <div class="row" style="padding-bottom: 5vh;">
+                <div class="ibox-content text-center p-md col-md-12">
+                    <h2><b>毕业设计管理系统 -- 关于系统</b></h2>
+                    <p>Copyright 毕业设计管理系统 ｜ Misaki Network © 2020 - 2021</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            <h5>版本更新历史</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div style="margin: 10px">
+                                <h2>V1.0.0<small>(2021年2月4日)</small></h2>
+                                <h4>
+                                    完成了系统的整体制作，三个用户组可以协同工作了。
+                                    <br>
+                                </h4>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div style="margin: 10px">
+                                <h2>V0.3.0<small>(2021年2月3日)</small></h2>
+                                <h4>
+                                    完成了学生端的制作。
+                                    <br>
+                                </h4>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div style="margin: 10px">
+                                <h2>V0.2.0<small>(2021年1月25日)</small></h2>
+                                <h4>
+                                    完成了教师端的制作。
+                                    <br>教师可以通过开始答辩对学生进行签到和打分了。
+                                </h4>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div style="margin: 10px">
+                                <h2>V0.1.0<small>(2021年1月19日)</small></h2>
+                                <h4>
+                                    完成了管理员端的制作。
+                                    <br>主要实现功能：
+                                    <br>1.用户的增删改查，管理员可以通过上传excel批量添加用户。
+                                    <br>2.管理员收到用户找回密码申请时可以审核申请并重置用户密码。
+                                    <br>3.管理员可以对学生成绩进行录入、查询、修改。
+                                    <br>4.管理员可以发布公告，可以给某一用户/用户组发送通知。
+                                    <br>5.管理员可以添加、查看、修改选题状况。
+                                    <br>6.管理员可以添加答辩信息，控制答辩签到的开关。
+                                    <br>7.管理员可以对用户上传文档进行相关操作，同时可以控制是否开启上传/下载权限。
+                                    <br>8.管理员可以修改一些系统设置。
+                                    <br>完成了用户交流模块的制作，用户可以通过此模块与其他用户进行交流。
+                                </h4>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div style="margin: 10px">
+                                <h2>V0.0.2<small>(2020年12月7日)</small></h2>
+                                <h4>
+                                    添加了用户权限鉴定模块，用户登录更安全了。
+                                </h4>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div style="margin: 10px">
+                                <h2>V0.0.1<small>(2020年11月26日)</small></h2>
+                                <h4>
+                                    完成项目搭建，建立初期数据表。
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="footer">
+            <div class="float-right">
+                <strong>1.0.0 GraduationProjectManager</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> 毕业设计管理系统 1.0.0 &copy; 2020-2021
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- Flot -->
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+    <!-- Peity -->
+    <script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+
+    <!-- jQuery UI -->
+    <script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+    <!-- GITTER -->
+    <script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+    <!-- Sparkline -->
+    <script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+    <!-- ChartJS-->
+    <script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+
+    <!-- Toastr -->
+    <script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+
+</body>
+</html>

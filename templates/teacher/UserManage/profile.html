@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>毕业设计管理系统 | 修改个人信息</title>
+
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='js/md5.js') }}"></script>
+</head>
+
+<body class="pace-done skin-3">
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle"
+                             src="
+                                     {% if userInfoDict[12] != '' %}{{ url_for('static',filename=userInfoDict[12]) }}{% else %}{{ url_for('static',filename='img/photo.jpg') }}{% endif %}"
+                             width="60px"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">{{ userInfoDict[11] }}</span>
+                            <span class="text-muted text-xs block" style="color: white !important">教师 <b
+                                    class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">登出</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link active">
+                    <a href="/teacher" style="background-color:#ea9a41;"><i class="fa fa-star"></i> <span
+                            class="nav-label">教师首页</span></a>
+                </li>
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-user-o"></i> <span class="nav-label">用户管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/user/query">指导学生信息</a></li>
+                        <li class="active"><a href="/teacher/user/profile">修改个人信息</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="index.html"><i class="fa fa-table"></i> <span class="nav-label">成绩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/score/insert">成绩录入</a></li>
+                        <li><a href="/teacher/score/query">成绩查询</a></li>
+                        <li><a href="/teacher/score/modify">成绩修改</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-info-circle"></i> <span class="nav-label">通知/公告管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/notice/advice/add">新增通知</a></li>
+                        <li><a href="/teacher/notice/advice/list">通知列表</a></li>
+                        <li><a href="/teacher/notice/chat">用户交流</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-flask"></i> <span class="nav-label">选题管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/topic/add">添加选题</a></li>
+                        <li><a href="/teacher/topic/query">查看选题情况</a></li>
+                        <li><a href="/teacher/topic/modify">修改选题</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-comments"></i> <span class="nav-label">答辩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/defend/start">开始答辩</a></li>
+                        <li><a href="/teacher/defend/query">查看答辩记录</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-file-text"></i> <span class="nav-label">文档管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/docs/open">开题报告管理</a></li>
+                        <li><a href="/teacher/docs/middle">中期报告管理</a></li>
+                        <li><a href="/teacher/docs/thesis">毕业论文管理</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search"
+                                   id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> 注销
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content">
+
+            <div class="container" style="margin-bottom: 20px;">
+                <div class="row">
+                    <div class="col-sm-12 b-r">
+                        <h3 class="m-t-none m-b">本人用户信息</h3>
+                        <form role="form">
+                            <div class="form-group" style="display: none"><label>ID</label> <input type="text"
+                                                                                                   id="chg_id"
+                                                                                                   placeholder="ID"
+                                                                                                   class="form-control"
+                                                                                                   disabled>
+                            </div>
+                            <div class="form-group" style="display: none"><label>UID</label> <input type="text"
+                                                                                                    id="chg_uid"
+                                                                                                    placeholder="UID"
+                                                                                                    class="form-control"
+                                                                                                    disabled>
+                            </div>
+                            <div class="form-group"><label>用户名</label> <input type="text"
+                                                                              id="chg_username"
+                                                                              class="form-control">
+                            </div>
+                            <div class="form-group"><label>密码</label> <input type="password"
+                                                                             id="chg_password"
+                                                                             class="form-control">
+                            </div>
+                            <div class="form-group" style="display: none"><label>性别</label> <input type="text"
+                                                                                                   id="chg_sex"
+                                                                                                   class="form-control"
+                                                                                                   disabled>
+                            </div>
+                            <div class="form-group" style="display: none"><label>班级</label> <input type="text"
+                                                                                                   id="chg_class"
+                                                                                                   class="form-control"
+                                                                                                   disabled>
+                            </div>
+                            <div class="form-group" style="display: none"><label>教学班级</label> <input type="text"
+                                                                                                     id="chg_t_class"
+                                                                                                     class="form-control"
+                                                                                                     disabled>
+                            </div>
+                            <div class="form-group"><label>学号/工号</label> <input type="text"
+                                                                                id="chg_number"
+                                                                                class="form-control" disabled>
+                            </div>
+                            <div class="form-group"><label>学院</label> <input type="text"
+                                                                             id="chg_college"
+                                                                             class="form-control" disabled>
+                            </div>
+                            <div class="form-group" style="display: none"><label>方向</label> <input type="text"
+                                                                                                   id="chg_direction"
+                                                                                                   class="form-control"
+                                                                                                   disabled>
+                            </div>
+                            <div class="form-group"><label>职称</label> <input type="text"
+                                                                             id="chg_title"
+                                                                             class="form-control" disabled>
+                            </div>
+                            <div class="form-group"><label>真实姓名</label> <input type="text"
+                                                                               id="chg_realname"
+                                                                               class="form-control" disabled>
+                            </div>
+                            <div class="form-group"><label>头像</label> <input type="text"
+                                                                             id="chg_portrait"
+                                                                             class="form-control"
+                                                                             disabled>
+                            </div>
+                            <div class="form-group"><label>简介</label> <input type="text"
+                                                                             id="chg_intro"
+                                                                             class="form-control">
+                            </div>
+                            <div class="form-group" style="display: none"><label>用户类别</label> <input type="text"
+                                                                                                     id="chg_category"
+                                                                                                     class="form-control"
+                                                                                                     disabled>
+                            </div>
+                            <div class="form-group" style="display: none"><label>登录次数</label> <input type="text"
+                                                                                                     id="chg_frequency"
+                                                                                                     class="form-control"
+                                                                                                     disabled>
+                            </div>
+                            <div class="form-group"><label>电话</label> <input type="text"
+                                                                             id="chg_phone"
+                                                                             class="form-control">
+                            </div>
+                            <div class="form-group"><label>QQ</label> <input type="text"
+                                                                             id="chg_qq"
+                                                                             class="form-control">
+                            </div>
+                            <div class="form-group"><label>邮箱</label> <input type="text"
+                                                                             id="chg_email"
+                                                                             class="form-control">
+                            </div>
+                            <div class="form-group"><label>微信</label> <input type="text"
+                                                                             id="chg_wechat"
+                                                                             class="form-control">
+                            </div>
+                            <div class="form-group" style="display: none"><label>用户锁定</label> <input type="text"
+                                                                                                     id="chg_lock"
+                                                                                                     class="form-control"
+                                                                                                     disabled>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-primary float-right m-t-n-xs"
+                                        type="button" onclick="submit_change()"><strong>修改</strong></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="float-right">
+                <strong>1.0.0 GraduationProjectManager</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> 毕业设计管理系统 1.0.0 &copy; 2020-2021
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Mainly scripts -->
+<script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+
+<!-- Flot -->
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+<!-- Peity -->
+<script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/steps/jquery.steps.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<!-- GITTER -->
+<script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+<!-- Sparkline -->
+<script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+<!-- ChartJS-->
+<script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+
+<!-- Toastr -->
+<script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+<script>
+    changeData({{ userInfoDict[0] }})
+
+    function changeData(id) {
+        $.get("/api/uesr/query?t=id&v=" + id, function (datas) {
+            if (datas == false) {
+                alert('没有查到相关信息');
+            } else {
+                $('#chg_id').val(datas[0][0]);
+                $('#chg_uid').val(datas[0][1]);
+                $('#chg_username').val(datas[0][2]);
+                $('#chg_password').val(datas[0][3]);
+                $('#chg_sex').val(datas[0][4]);
+                $('#chg_class').val(datas[0][5]);
+                $('#chg_t_class').val(datas[0][6]);
+                $('#chg_number').val(datas[0][7]);
+                $('#chg_college').val(datas[0][8]);
+                $('#chg_direction').val(datas[0][9]);
+                $('#chg_title').val(datas[0][10]);
+                $('#chg_realname').val(datas[0][11]);
+                $('#chg_portrait').val(datas[0][12]);
+                $('#chg_intro').val(datas[0][13]);
+                $('#chg_category').val(datas[0][14]);
+                $('#chg_frequency').val(datas[0][15]);
+                $('#chg_phone').val(datas[0][16]);
+                $('#chg_qq').val(datas[0][17]);
+                $('#chg_email').val(datas[0][18]);
+                $('#chg_wechat').val(datas[0][19]);
+                $('#chg_lock').val(datas[0][23]);
+
+            }
+        });
+    }
+
+    function submit_change() {
+        $.ajax({
+            type: 'POST',
+            url: '/api/user/modify',
+            data: {
+                'id': $('#chg_id').val(),
+                'username': $('#chg_username').val(),
+                'password': md5($('#chg_password').val()),
+                'sex': $('#chg_sex').val(),
+                'SQLclass': $('#chg_class').val(),
+                't_class': $('#chg_t_class').val(),
+                'number': $('#chg_number').val(),
+                'college': $('#chg_college').val(),
+                'direction': $('#chg_direction').val(),
+                'title': $('#chg_title').val(),
+                'realname': $('#chg_realname').val(),
+                'portrait': $('#chg_portrait').val(),
+                'intro': $('#chg_intro').val(),
+                'category': $('#chg_category').val(),
+                'frequency': $('#chg_frequency').val(),
+                'phone': $('#chg_phone').val(),
+                'qq': $('#chg_qq').val(),
+                'email': $('#chg_email').val(),
+                'wechat': $('#chg_wechat').val(),
+                'lock': $('#chg_lock').val()
+            },
+            dataType: 'json'
+        });
+        UserInfoSearch();
+        alert('用户信息修改成功');
+        document.getElementById("modal-form").style.display = 'none';
+        document.getElementsByClassName('modal-backdrop fade show')[0].style.display = 'none';
+    }
+</script>
+
+<!--同步官网模板结束-->
+</body>
+</html>

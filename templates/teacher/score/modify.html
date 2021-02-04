@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>毕业设计管理系统 | 成绩修改</title>
+
+    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static',filename='css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static',filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/plugins/dropzone/dropzone.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static',filename='js/plugins/dropzone/dropzone.js') }}"></script>
+</head>
+
+<body class="pace-done skin-3">
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle"
+                             src="
+
+
+
+
+                                     {% if userInfoDict[12] != '' %}{{ url_for('static',filename=userInfoDict[12]) }}{% else %}{{ url_for('static',filename='img/photo.jpg') }}{% endif %}"
+                             width="60px"/>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">{{ userInfoDict[11] }}</span>
+                            <span class="text-muted text-xs block" style="color: white !important">教师 <b
+                                    class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout">登出</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+
+                    </div>
+                </li>
+                <li class="landing_link active">
+                    <a href="/teacher" style="background-color:#ea9a41;"><i class="fa fa-star"></i> <span
+                            class="nav-label">教师首页</span></a>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-user-o"></i> <span class="nav-label">用户管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/user/query">指导学生信息</a></li>
+                        <li><a href="/teacher/user/profile">修改个人信息</a></li>
+                    </ul>
+                </li>
+
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-table"></i> <span class="nav-label">成绩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/score/insert">成绩录入</a></li>
+                        <li><a href="/teacher/score/query">成绩查询</a></li>
+                        <li class="active"><a href="/teacher/score/modify">成绩修改</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-info-circle"></i> <span class="nav-label">通知/公告管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/notice/advice/add">新增通知</a></li>
+                        <li><a href="/teacher/notice/advice/list">通知列表</a></li>
+                        <li><a href="/teacher/notice/chat">用户交流</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-flask"></i> <span class="nav-label">选题管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/topic/add">添加选题</a></li>
+                        <li><a href="/teacher/topic/query">查看选题情况</a></li>
+                        <li><a href="/teacher/topic/modify">修改选题</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-comments"></i> <span class="nav-label">答辩管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/defend/start">开始答辩</a></li>
+                        <li><a href="/teacher/defend/query">查看答辩记录</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-file-text"></i> <span class="nav-label">文档管理</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/teacher/docs/open">开题报告管理</a></li>
+                        <li><a href="/teacher/docs/middle">中期报告管理</a></li>
+                        <li><a href="/teacher/docs/thesis">毕业论文管理</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search"
+                                   id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="login.html">
+                            <i class="fa fa-sign-out"></i> 注销
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>成绩修改</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/admin">主页</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a>成绩管理</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <strong>成绩修改</strong>
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+        <div class="wrapper wrapper-content">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5></h5>
+                            </div>
+                            {% if verifyCode == True %}
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ibox-content">
+                                                <form action="" method="GET">
+                                                    <div class="form-group row"><label class="col-sm-2 col-form-label">学号</label>
+                                                        <div class="col-sm-10">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="number"
+                                                                       name="number">
+                                                                <span class="input-group-append">
+                                                <button type="button" class="btn btn-primary" onclick="GetUserInfo()">查询
+                                        </button> </span></div>
+                                                            <span class="form-text m-b-none"></span>
+                                                            <span class="form-text m-b-none" id="plh"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hr-line-dashed"></div>
+                                                    <div class="form-group row"><label class="col-sm-2 col-form-label">阶段</label>
+                                                        <div class="col-sm-10">
+                                                            <select class="form-control m-b" name="kaidan" id="kaidan">
+                                                                <option value="op_score">开题报告成绩</option>
+                                                                <option value="mi_score">中期报告成绩</option>
+                                                                <option value="th_score">论文终稿成绩</option>
+                                                            </select>
+                                                            <span class="form-text m-b-none"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hr-line-dashed"></div>
+                                                    <div class="form-group row"><label class="col-sm-2 col-form-label">成绩</label>
+                                                        <div class="col-sm-10"><input type="number" class="form-control"
+                                                                                      id="score" required
+                                                                                      name="score"> <span
+                                                                class="form-text m-b-none"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hr-line-dashed"></div>
+                                                    <button class="btn btn-primary btn-sm" type="button"
+                                                            onclick="SubmitScore()">保存更改
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="alert alert-danger">
+                                                本操作需要<b>管理员用户</b>协助身份验证，请联系管理员获得成绩修改权限鉴定码。
+                                            </div>
+                                            <form action="">
+                                                <div class="input-group" style="margin-top: 1em;"><input type="text"
+                                                                                                         class="form-control"
+                                                                                                         id="code">
+                                                    <span
+                                                            class="input-group-append">
+                                                    <button type="button" class="btn btn-primary" id="vc_verify_btn">验证
+                                        </button> </span></div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="float-right">
+                <strong>1.0.0 GraduationProjectManager</strong>
+            </div>
+            <div>
+                <strong>Copyright</strong> 毕业设计管理系统 1.0.0 &copy; 2020-2021
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Mainly scripts -->
+<script src="{{ url_for('static',filename='js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+<script>
+
+    $('#vc_verify_btn').on('click', function () {
+            $.get("/api/dkey/verify?key=" + $('#code').val(), function (datas) {
+                    window.location.href = '/teacher/score/modify%3Fcode%3D' + $('#code').val();
+                });
+        }
+    );
+    $('#vc_get_btn').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: '/api/user/messager/adminVerify',
+                data: {
+                    id: 1,
+                },
+                dataType: 'json'
+            });
+        }
+    );
+    {% if verifyCode == True %}
+        $('.custom-file-input').on('change', function () {
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+        });
+        function GetUserInfo() {
+            $.get("/api/score/query?t=t_snumber&v=" + $('#number').val(), function (datas) {
+                let reload_data = "学号：" + $('#number').val() + "<br>选题ID：" + datas[0][0][1] + "<br>选题名称：" + datas[1][2] +
+                    "<br>开题报告提交时间：" + datas[0][0][5] + "<br>中期报告提交时间：" + datas[0][0][6] +
+                    "<br>论文终稿提交时间：" + datas[0][0][7] + "<br>开题成绩/中期成绩/终稿成绩：" + datas[0][0][8] + "/" + datas[0][0][9] + "/" + datas[0][0][10]
+                $('#plh').html(reload_data);
+            });
+        }
+        function SubmitScore() {
+            $.get("/api/score/update?t=" + $('#kaidan').val() + "&v=" + $('#score').val() + "&sn=" + $('#number').val(),
+                function () {
+                    GetUserInfo();
+                    alert('成绩录入成功');
+                });
+        }
+
+    {% endif %}
+</script>
+
+<!-- Flot -->
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.spline.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/flot/jquery.flot.pie.js') }}"></script>
+
+<!-- Peity -->
+<script src="{{ url_for('static',filename='js/plugins/peity/jquery.peity.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/demo/peity-demo.js') }}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="{{ url_for('static',filename='js/inspinia.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/pace/pace.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/plugins/steps/jquery.steps.min.js') }}"></script>
+<!-- jQuery UI -->
+<script src="{{ url_for('static',filename='js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<!-- GITTER -->
+<script src="{{ url_for('static',filename='js/plugins/gritter/jquery.gritter.min.js') }}"></script>
+
+<!-- Sparkline -->
+<script src="{{ url_for('static',filename='js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+
+<!-- Sparkline demo data  -->
+<script src="{{ url_for('static',filename='js/demo/sparkline-demo.js') }}"></script>
+
+<!-- ChartJS-->
+<script src="{{ url_for('static',filename='js/plugins/chartJs/Chart.min.js') }}"></script>
+
+<!-- Toastr -->
+<script src="{{ url_for('static',filename='js/plugins/toastr/toastr.min.js') }}"></script>
+
+
+<!--同步官网模板结束-->
+</body>
+</html>
